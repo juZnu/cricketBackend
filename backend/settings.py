@@ -11,27 +11,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sad&=^k4*fuzbd$+7^ma4)jua(9%vnk008zr!t$h$6ecb4d@%1'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-sad&=^k4*fuzbd$+7^ma4)jua(9%vnk008zr!t$h$6ecb4d@%1')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,7 +52,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Add this line
 ]
 
-
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
@@ -76,21 +72,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CricketData',
-        'USER': 'postgres',
-        'PASSWORD': 'D0uble t@p',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('DB_NAME', 'cricket_yk8s'),
+        'USER': os.environ.get('DB_USER', 'jishnu'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'N6xrvri1azAT3shqlTiB1GgOKewxWoaH'),
+        'HOST': os.environ.get('DB_HOST', 'dpg-cpgcer821fec73arjk40-a.oregon-postgres.render.com'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -110,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -122,7 +115,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -132,6 +124,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS settings
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
@@ -147,4 +141,3 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     'Team-ID-1',
     'Team-ID-2',
 ]
-
