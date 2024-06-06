@@ -1,0 +1,20 @@
+# players
+GET http://localhost:8000/api/players/
+
+# teams
+GET http://localhost:8000/teams/
+
+# competitions
+GET http://localhost:8000/competitions/
+
+# teams-grid
+GET http://localhost:8000/teams-grid/
+
+# check-player-teams
+GET http://localhost:8000/check-player-teams/?team_id_1=TEAM_ID_1&team_id_2=TEAM_ID_2
+
+# get-player-played-for-both-teams
+GET http://localhost:8000/get-player-played-for-both-teams/?team_id_1=TEAM_ID_1&team_id_2=TEAM_ID_2
+
+# player_list_with_name
+GET http://localhost:8000/player_list/?Player-Name=PLAYER_NAME
